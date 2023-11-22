@@ -1,0 +1,73 @@
+package linkedListImpl;
+
+public class Linked {
+	
+	class Node{
+		int data;
+		Node next;
+		public int getData() {
+			return data;
+		}
+		public void setData(int data) {
+			this.data = data;
+		}
+		public Node getNext() {
+			return next;
+		}
+		public void setNext(Node next) {
+			this.next = next;
+		}
+		
+	}
+	 int length=0;
+	Node head=null;
+	Node tail=null;
+	
+	
+	public  void addFirst(int d) {
+		Node nn = new Node();
+		nn.setData(d);
+		
+		if(length>=1) {
+			nn.setNext(head);
+		}
+		
+		if(length ==0) {
+			head=nn;
+			tail=nn;
+			length++;
+			
+		}else {
+			head=nn;
+			length++;
+		}
+		
+	}
+	public void getAllNode() {
+		Node temp = head;
+		while(temp!=null) {
+			System.out.print(temp.getData()+" -> ");
+			temp=temp.next;
+			
+		}
+		System.out.print("null");
+
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Linked nn = new Linked();
+		nn.addFirst(7);
+		nn.addFirst(8);
+		nn.addFirst(12);
+		nn.addFirst(15);
+		nn.addFirst(18);
+		nn.addFirst(20);
+		nn.addFirst(22);
+		nn.getAllNode();
+
+
+	}
+
+}

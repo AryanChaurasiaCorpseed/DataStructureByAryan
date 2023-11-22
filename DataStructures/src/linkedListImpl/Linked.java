@@ -1,0 +1,151 @@
+package linkedListImpl;
+
+public class Linked {
+	
+	class Node{
+		int data;
+		Node next;
+		public int getData() {
+			return data;
+		}
+		public void setData(int data) {
+			this.data = data;
+		}
+		public Node getNext() {
+			return next;
+		}
+		public void setNext(Node next) {
+			this.next = next;
+		}
+		
+	}
+	 int length=0;
+	Node head=null;
+	Node tail=null;
+	
+	
+	public  void addFirst(int d) {
+		Node nn = new Node();
+		nn.setData(d);
+		
+		if(length>=1) {
+			nn.setNext(head);
+		}
+		
+		if(length ==0) {
+			head=nn;
+			tail=nn;
+			length++;
+			
+		}else {
+			head=nn;
+			length++;
+		}
+		
+	}
+	
+
+	public void addLast(int d) {
+		
+		// new Node Create
+		Node nn  = new Node();
+		nn.setData(d);
+		
+		// attach Node
+		if(length>=1) {
+		    tail.setNext(nn);
+		}
+//		summary Object (Means we update head ,tail and size)
+		if(length==0) {
+		  head=nn;
+		  tail=nn;
+		  length++;
+		}else {
+			tail=nn;
+			length++;
+		}
+		
+	}
+	
+	public void addAt(int at,int d) throws Exception {
+		Node nn = new Node();
+		nn.setData(d);
+		
+		if(at==0) {
+			addFirst(d);
+		}
+		if(at==length) {
+			addLast(d);
+		}
+		Node beforeNode=getAtIndex(at-2);
+		Node afterNode=getAtIndex(at-1);
+		beforeNode.next=nn;
+		nn.next=afterNode;
+		length++;
+
+		
+		
+	}
+	
+	public void getAllNode() {
+		Node temp = head;
+		while(temp!=null) {
+			System.out.print(temp.getData()+" -> ");
+			temp=temp.next;
+			
+		}
+		System.out.print("null");
+
+	}
+	public Node getAtIndex(int l) throws Exception {
+
+		if(length==0) {
+			throw new Exception("no data is avilable in linked list");
+		}
+		if(length<l) {
+			throw new Exception("Actuallu linked list in "+length+" data is prsent please search under this");
+		}
+		int count=0;
+		Node temp = head;
+		while(count<=l) {
+			temp=temp.next;
+			count++;
+			
+		}
+		System.out.println("index   ...."+count);
+		System.out.println("data  . ."+temp.data);
+
+		return temp;
+		
+	}
+	
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		Linked nn = new Linked();
+		nn.addFirst(7);
+		nn.addFirst(8);
+		nn.addFirst(12);
+		nn.addFirst(15);
+		nn.addFirst(18);
+		nn.addFirst(20);
+		nn.addFirst(22);
+		nn.getAllNode();
+		
+		nn.addLast(3);
+		System.out.println();
+		
+		nn.getAllNode();
+		
+		System.out.println("get at node index");
+
+		nn.getAtIndex(4);
+		System.out.println("after add At");
+
+		nn.addAt(4, 102);
+		
+		nn.getAllNode();
+
+	}
+
+}
